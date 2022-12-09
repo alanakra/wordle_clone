@@ -1,17 +1,16 @@
 import './style.css'
-import { WORDS } from "./words.js"
 
 const NUMBER_OF_GUESSES = 6
 let guessesRemaining: number = NUMBER_OF_GUESSES
 let currentGuess: string[] = []
 let nextLetter = 0
-const rightGuessString: string = WORDS[Math.floor(Math.random() * WORDS.length)]
+const rightGuessString = 'WORDLE'
 const rightLength: number = rightGuessString.length
 
 console.log(rightGuessString)
 
 function initBoard() {
-    let board = document.getElementById("game-board");
+    let board = document.getElementById("game-board")
 
     for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
         let row = document.createElement("div")
@@ -67,12 +66,6 @@ function checkGuess () {
         console.error("Not enough letters!")
         return
     }
-
-    if (!WORDS.includes(guessString)) {
-        console.error("Word not in list!")
-        return
-    }
-
     
     for (let i = 0; i < rightLength; i++) {
         let letterColor = ''
@@ -111,9 +104,9 @@ function checkGuess () {
         guessesRemaining = 0
         return
     } else {
-        guessesRemaining -= 1;
-        currentGuess = [];
-        nextLetter = 0;
+        guessesRemaining -= 1
+        currentGuess = []
+        nextLetter = 0
 
         if (guessesRemaining === 0) {
             console.error("You've run out of guesses! Game over!")
@@ -176,4 +169,4 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
     document.dispatchEvent(new KeyboardEvent("keyup", {'key': key}))
 })
 
-initBoard();
+initBoard()
