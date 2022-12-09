@@ -1,11 +1,12 @@
 import './style.css'
-import { WORDS } from "./words.js";
+import { WORDS } from "./words.js"
 
-const NUMBER_OF_GUESSES = 6;
-let guessesRemaining = NUMBER_OF_GUESSES;
-let currentGuess = [];
-let nextLetter = 0;
-let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)]
+const NUMBER_OF_GUESSES = 6
+let guessesRemaining: number = NUMBER_OF_GUESSES
+let currentGuess: string[] = []
+let nextLetter = 0
+const rightGuessString: string = WORDS[Math.floor(Math.random() * WORDS.length)]
+const rightLength: number = rightGuessString.length
 
 console.log(rightGuessString)
 
@@ -16,7 +17,7 @@ function initBoard() {
         let row = document.createElement("div")
         row.className = "letter-row"
         
-        for (let j = 0; j < 5; j++) {
+        for (let j = 0; j < rightLength; j++) {
             let box = document.createElement("div")
             box.className = "letter-box"
             row.appendChild(box)
@@ -62,7 +63,7 @@ function checkGuess () {
         guessString += val
     }
 
-    if (guessString.length != 5) {
+    if (guessString.length != rightLength) {
         toastr.error("Not enough letters!")
         return
     }
@@ -73,7 +74,7 @@ function checkGuess () {
     }
 
     
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < rightLength; i++) {
         let letterColor = ''
         let box = row.children[i]
         let letter = currentGuess[i]
@@ -124,7 +125,7 @@ function checkGuess () {
 }
 
 function insertLetter (pressedKey) {
-    if (nextLetter === 5) {
+    if (nextLetter === rightLength) {
         return
     }
     pressedKey = pressedKey.toLowerCase()
