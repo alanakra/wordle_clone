@@ -10,19 +10,20 @@ const rightLength: number = rightGuessString.length
 console.log(rightGuessString)
 
 function initBoard() {
-    let board = document.getElementById("game-board")
+    const board = document.getElementById("game-board")
+    const boardBox: Element = board!
 
     for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
-        let row = document.createElement("div")
+        const row = document.createElement("div")
         row.className = "letter-row"
         
         for (let j = 0; j < rightLength; j++) {
-            let box = document.createElement("div")
+            const box = document.createElement("div")
             box.className = "letter-box"
             row.appendChild(box)
         }
 
-        board.appendChild(row)
+        boardBox.appendChild(row)
     }
 }
 
@@ -153,7 +154,7 @@ document.addEventListener("keyup", (e) => {
         return
     }
 
-    let pressedKey = String(e.key)
+    const pressedKey = String(e.key)
     if (pressedKey === "Backspace" && nextLetter !== 0) {
         deleteLetter()
         return
@@ -164,7 +165,7 @@ document.addEventListener("keyup", (e) => {
         return
     }
 
-    let found = pressedKey.match(/[a-z]/gi)
+    const found = pressedKey.match(/[a-z]/gi)
     if (!found || found.length > 1) {
         return
     } else {
