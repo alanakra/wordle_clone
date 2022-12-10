@@ -6,6 +6,7 @@ let currentGuess: string[] = []
 let nextLetter = 0
 const rightGuessString = 'WORDLE'
 const rightLength: number = rightGuessString.length
+const arrRightGuessSubstring: string[] = [...rightGuessString]
 const keyboardCont = document.getElementById("keyboard-cont")
 const keyboardBox: Element = keyboardCont!
 
@@ -92,7 +93,7 @@ function checkGuess () {
     for (let i = 0; i < rightLength; i++) {
         let letterColor = ''
         const box = rowBox.children[i] as HTMLElement
-        const letter = currentGuess[i]
+        const letter = currentGuess[i]!
         
         const letterPosition: number = rightGuess.indexOf(currentGuess[i]!)
         // is letter in the correct guess
@@ -112,6 +113,8 @@ function checkGuess () {
 
             rightGuess[letterPosition] = "#"
         }
+
+		fillTable(letter.toUpperCase(), i)
 
         const delay: number = 250 * i
         setTimeout(()=> {
@@ -134,6 +137,28 @@ function checkGuess () {
             console.error("You've run out of guesses! Game over!")
             console.info(`The right word was: "${rightGuessString}"`)
         }
+    }
+}
+
+function fillTable (letter: string, position: number) {
+    console.warn(`Letter: ${letter}. ArrRightGuessSubstring: ${arrRightGuessSubstring[position]}. Type: ${typeof(arrRightGuessSubstring[position])}. Index: ${arrRightGuessSubstring.indexOf(arrRightGuessSubstring[position])}`)
+    const row = document.getElementsByClassName('letter-row') as HTMLCollectionOf<Element>
+    if (arrRightGuessSubstring.includes(letter)) {
+        if (letter === arrRightGuessSubstring[position]) {
+            console.log(`Check position: ${position} ${arrRightGuessSubstring.indexOf(arrRightGuessSubstring[position]!)}`)
+            console.info('GOOD POSITION !!!')
+            console.log(row[6 - guessesRemaining]!.childNodes[position])
+            row[6 - guessesRemaining]!.childNodes[position]!.style.backgroundColor = "#a0ce87"
+        } else {
+            console.info('NO GOOD POSITION !!')
+            console.log(row[6 - guessesRemaining]!.childNodes[position])
+            console.log(position)
+            row[6 - guessesRemaining]!.childNodes[position]!.style.backgroundColor = "#fdeec6"
+        }
+    } else {
+        console.info('NO !!')
+        console.log(row[6 - guessesRemaining]!.childNodes[position])
+        row[6 - guessesRemaining]!.childNodes[position]!.style.backgroundColor = "#d2d2d2"
     }
 }
 
