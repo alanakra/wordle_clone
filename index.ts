@@ -75,9 +75,10 @@ function deleteLetter () {
 }
 
 function checkGuess () {
-    let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
+    const row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
+    const rowBox: Element = row!
     let guessString = ''
-    let rightGuess = Array.from(rightGuessString)
+    const rightGuess: string[] = [...rightGuessString]
 
     for (const val of currentGuess) {
         guessString += val
@@ -90,10 +91,10 @@ function checkGuess () {
     
     for (let i = 0; i < rightLength; i++) {
         let letterColor = ''
-        let box = row.children[i]
-        let letter = currentGuess[i]
+        const box = rowBox.children[i] as HTMLElement
+        const letter = currentGuess[i]
         
-        let letterPosition = rightGuess.indexOf(currentGuess[i])
+        const letterPosition: number = rightGuess.indexOf(currentGuess[i]!)
         // is letter in the correct guess
         if (letterPosition === -1) {
             letterColor = 'grey'
@@ -112,7 +113,7 @@ function checkGuess () {
             rightGuess[letterPosition] = "#"
         }
 
-        let delay = 250 * i
+        const delay: number = 250 * i
         setTimeout(()=> {
             //shade box
             box.style.backgroundColor = letterColor
