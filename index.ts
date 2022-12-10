@@ -6,6 +6,8 @@ let currentGuess: string[] = []
 let nextLetter = 0
 const rightGuessString = 'WORDLE'
 const rightLength: number = rightGuessString.length
+const keyboardCont = document.getElementById("keyboard-cont")
+const keyboardBox: Element = keyboardCont!
 
 console.log(rightGuessString)
 
@@ -173,7 +175,7 @@ document.addEventListener("keyup", (e) => {
     }
 })
 
-document.getElementById("keyboard-cont").addEventListener("click", (e) => {
+keyboardBox.addEventListener("click", (e) => {
     const target = e.target
     
     if (!target.classList.contains("keyboard-button")) {
