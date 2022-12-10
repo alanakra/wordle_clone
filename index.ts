@@ -61,10 +61,12 @@ function insertLetter (pressedKey: string) {
 }
 
 function deleteLetter () {
-    let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
-    let box = row.children[nextLetter - 1]
-    box.textContent = ""
-    box.classList.remove("filled-box")
+    const row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
+    const rowBox: Element = row!
+    const box = rowBox.children[nextLetter - 1]
+    const boxText: Element = box!
+    boxText.textContent = ""
+    boxText.classList.remove("filled-box")
     currentGuess.pop()
     nextLetter -= 1
 }
