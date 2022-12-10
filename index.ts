@@ -44,6 +44,22 @@ function shadeKeyBoard(letter, color) {
     }
 }
 
+function insertLetter (pressedKey: string) {
+    if (nextLetter === rightLength) {
+        return
+    }
+    pressedKey = pressedKey.toLowerCase()
+
+    const row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
+    const rowBox: Element = row!
+    const box = rowBox.children[nextLetter];
+    const boxText: Element = box!
+    boxText.textContent = pressedKey
+    boxText.classList.add("filled-box")
+    currentGuess.push(pressedKey)
+    nextLetter += 1
+}
+
 function deleteLetter () {
     let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
     let box = row.children[nextLetter - 1]
