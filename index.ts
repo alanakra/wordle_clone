@@ -136,20 +136,6 @@ function checkGuess () {
     }
 }
 
-function insertLetter (pressedKey) {
-    if (nextLetter === rightLength) {
-        return
-    }
-    pressedKey = pressedKey.toLowerCase()
-
-    let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
-    let box = row.children[nextLetter]
-    box.textContent = pressedKey
-    box.classList.add("filled-box")
-    currentGuess.push(pressedKey)
-    nextLetter += 1
-}
-
 document.addEventListener("keyup", (e) => {
 
     if (guessesRemaining === 0) {
