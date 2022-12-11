@@ -184,12 +184,12 @@ document.addEventListener("keyup", (e) => {
 })
 
 keyboardBox.addEventListener("click", (e) => {
-    const target = e.target
+    const target = e.target as Element
     
     if (!target.classList.contains("keyboard-button")) {
         return
     }
-    let key = target.textContent
+    let key: string = target.textContent!
 
     if (key === "Del") {
         key = "Backspace"
