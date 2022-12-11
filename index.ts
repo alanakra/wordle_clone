@@ -80,7 +80,7 @@ function deleteLetter () {
 function checkGuess () {
     let guessString = ''
     const rightGuess: string[] = [...rightGuessString]
-
+    
     for (const val of currentGuess) {
         guessString += val
     }
@@ -121,7 +121,7 @@ function checkGuess () {
         }, delay)
     }
 
-    if (guessString === rightGuessString) {
+    if (guessString.toUpperCase() === rightGuessString) {
         console.warn(guessString, rightGuessString)
         responseWordle.innerHTML = `You guessed right! Game over!`
         guessesRemaining = 0
