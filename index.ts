@@ -141,7 +141,7 @@ function checkGuess () {
 }
 
 function fillTable (letter: string, position: number) {
-    console.warn(`Letter: ${letter}. ArrRightGuessSubstring: ${arrRightGuessSubstring[position]}. Type: ${typeof(arrRightGuessSubstring[position])}. Index: ${arrRightGuessSubstring.indexOf(arrRightGuessSubstring[position])}`)
+    console.warn(`Letter: ${letter}. ArrRightGuessSubstring: ${arrRightGuessSubstring[position]}. Type: ${typeof(arrRightGuessSubstring[position]!)}. Index: ${arrRightGuessSubstring.indexOf(arrRightGuessSubstring[position]!)}`)
     const row = document.getElementsByClassName('letter-row') as HTMLCollectionOf<Element>
     if (arrRightGuessSubstring.includes(letter)) {
         if (letter === arrRightGuessSubstring[position]) {
