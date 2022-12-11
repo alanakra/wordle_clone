@@ -54,6 +54,12 @@ h1 {
   text-transform: uppercase;
 }
 
+.response-wordle {
+  margin-top: 40px;
+	font-size: 1.5rem;
+  text-align: center;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: black;
@@ -63,12 +69,12 @@ h1 {
     text-align: center;
     color: white;
   }
-
+  
   .filled-box {
     border: solid white 2px;
   }
-
-  .letter-box {
+  
+  .letter-box, .response-wordle {
     color: white;
   }
 }

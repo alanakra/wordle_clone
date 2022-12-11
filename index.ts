@@ -7,6 +7,7 @@ let nextLetter = 0
 const rightGuessString = 'WORDLE'
 const rightLength: number = rightGuessString.length
 const arrRightGuessSubstring: string[] = [...rightGuessString]
+const responseWordle: HTMLElement = document.getElementById('response-wordle')!
 const keyboardCont = document.getElementById("keyboard-cont")
 const keyboardBox: Element = keyboardCont!
 
@@ -85,7 +86,7 @@ function checkGuess () {
     }
 
     if (guessString.length != rightLength) {
-        console.error("Not enough letters!")
+        responseWordle.innerHTML = `Not enough letters!`
         return
     }
     
@@ -121,7 +122,8 @@ function checkGuess () {
     }
 
     if (guessString === rightGuessString) {
-        console.log("You guessed right! Game over!")
+        console.warn(guessString, rightGuessString)
+        responseWordle.innerHTML = `You guessed right! Game over!`
         guessesRemaining = 0
         return
     } else {
@@ -130,8 +132,8 @@ function checkGuess () {
         nextLetter = 0
 
         if (guessesRemaining === 0) {
-            console.error("You've run out of guesses! Game over!")
-            console.info(`The right word was: "${rightGuessString}"`)
+            responseWordle.innerHTML = `You've run out of guesses! Game over! <br>
+            The right word was: "${rightGuessString}"`
         }
     }
 }
