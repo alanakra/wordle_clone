@@ -30,8 +30,9 @@ function initBoard() {
     }
 }
 
-function shadeKeyBoard(letter, color) {
-    for (const elem of document.getElementsByClassName("keyboard-button")) {
+function colorKeyboard(letter: string, color: string) {
+    const keyBoard = document.getElementsByClassName("keyboard-button") as HTMLCollection
+    for (const elem of keyBoard) {
         if (elem.textContent === letter) {
             const oldColor = elem.style.backgroundColor
             if (oldColor === 'green') {
@@ -115,7 +116,7 @@ function checkGuess () {
 
         const delay: number = 250 * i
         setTimeout(()=> {
-            shadeKeyBoard(letter, letterColor)
+            colorKeyboard(letter, letterColor)
         }, delay)
     }
 
