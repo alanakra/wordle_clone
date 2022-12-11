@@ -76,8 +76,6 @@ function deleteLetter () {
 }
 
 function checkGuess () {
-    const row = document.getElementsByClassName("letter-row")[6 - guessesRemaining]
-    const rowBox: Element = row!
     let guessString = ''
     const rightGuess: string[] = [...rightGuessString]
 
@@ -92,7 +90,6 @@ function checkGuess () {
     
     for (let i = 0; i < rightLength; i++) {
         let letterColor = ''
-        const box = rowBox.children[i] as HTMLElement
         const letter = currentGuess[i]!
         
         const letterPosition: number = rightGuess.indexOf(currentGuess[i]!)
@@ -114,12 +111,10 @@ function checkGuess () {
             rightGuess[letterPosition] = "#"
         }
 
-		fillTable(letter.toUpperCase(), i)
+        fillTable(letter.toUpperCase(), i)
 
         const delay: number = 250 * i
         setTimeout(()=> {
-            //shade box
-            box.style.backgroundColor = letterColor
             shadeKeyBoard(letter, letterColor)
         }, delay)
     }
