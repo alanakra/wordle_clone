@@ -53,3 +53,22 @@ h1 {
   cursor: pointer;
   text-transform: uppercase;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
+  
+  h1 {
+    text-align: center;
+    color: white;
+  }
+
+  .filled-box {
+    border: solid white 2px;
+  }
+
+  .letter-box {
+    color: white;
+  }
+}
