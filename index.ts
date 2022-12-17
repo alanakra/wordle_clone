@@ -1,4 +1,6 @@
 import './style.css'
+import Toastr from 'toastr2'
+import './node_modules/toastr2/dist/toastr.min.css'
 
 const NUMBER_OF_GUESSES = 6
 let guessesRemaining: number = NUMBER_OF_GUESSES
@@ -7,9 +9,10 @@ let nextLetter = 0
 const rightGuessString = 'WORDLE'
 const rightLength: number = rightGuessString.length
 const arrRightGuessSubstring: string[] = [...rightGuessString]
-const responseWordle: HTMLElement = document.getElementById('response-wordle')!
 const keyboardCont = document.getElementById("keyboard-cont")
 const keyboardBox: Element = keyboardCont!
+const toastr = new Toastr()
+toastr.options.closeButton = true
 
 console.log(rightGuessString)
 
@@ -86,7 +89,7 @@ function checkGuess () {
     }
 
     if (guessString.length != rightLength) {
-        responseWordle.innerHTML = `Not enough letters!`
+        toastr.warning(`Not enough letters!`)
         return
     }
     
@@ -123,7 +126,7 @@ function checkGuess () {
 
     if (guessString.toUpperCase() === rightGuessString) {
         console.warn(guessString, rightGuessString)
-        responseWordle.innerHTML = `You guessed right! Game over!`
+        toastr.info(`You guessed right! Game over!`)
         guessesRemaining = 0
         return
     } else {
@@ -132,8 +135,8 @@ function checkGuess () {
         nextLetter = 0
 
         if (guessesRemaining === 0) {
-            responseWordle.innerHTML = `You've run out of guesses! Game over! <br>
-            The right word was: "${rightGuessString}"`
+            toastr.error(`You've run out of guesses! Game over! <br>
+            The right word was: "${rightGuessString}"`)
         }
     }
 }
