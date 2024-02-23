@@ -35,7 +35,7 @@ function initBoard() {
 }
 
 function colorKeyboard(letter: string, color: string) {
-    const keyBoard = document.getElementsByClassName("keyboard-button") as HTMLCollection
+    const keyBoard = document.getElementsByClassName("keyboard-button") as HTMLCollectionOf<HTMLElement>
     for (const elem of keyBoard) {
         if (elem.textContent === letter) {
             const oldColor = elem.style.backgroundColor
@@ -143,15 +143,20 @@ function checkGuess () {
 
 function fillTable (letter: string, position: number) {
     const row = document.getElementsByClassName('letter-row') as HTMLCollectionOf<Element>
-    row[6 - guessesRemaining]!.childNodes[position]!.style.color = "black"
-    if (arrRightGuessSubstring.includes(letter)) {
-        if (letter === arrRightGuessSubstring[position]) {
-            row[6 - guessesRemaining]!.childNodes[position]!.style.backgroundColor = "#a0ce87"
+    const targetNode = row[6 - guessesRemaining]?.childNodes[position];
+
+    if (targetNode instanceof HTMLElement) {
+        targetNode.style.color = "black";
+
+        if (arrRightGuessSubstring.includes(letter)) {
+            if (letter === arrRightGuessSubstring[position]) {
+                targetNode.style.backgroundColor = "#a0ce87";
+            } else {
+                targetNode.style.backgroundColor = "#fdeec6";
+            }
         } else {
-            row[6 - guessesRemaining]!.childNodes[position]!.style.backgroundColor = "#fdeec6"
+            targetNode.style.backgroundColor = "#d2d2d2";
         }
-    } else {
-        row[6 - guessesRemaining]!.childNodes[position]!.style.backgroundColor = "#d2d2d2"
     }
 }
 
